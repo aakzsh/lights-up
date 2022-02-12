@@ -1,4 +1,4 @@
-# lightup
+# lights up
 
 A new Flutter project.
 
