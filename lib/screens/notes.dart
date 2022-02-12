@@ -33,7 +33,8 @@ class _NotesState extends State<Notes> {
                 child: Padding(
                   padding: const EdgeInsets.all(32.0),
                   child: Center(
-                    child: Text("man its been weird bjnikjkol",
+                    child: Text(
+                        "man its been weird bjnikjkol man its been weird bjnikjkol man its been weird bjnikjkol man its been weird bjnikjkol",
                         style: GoogleFonts.shadowsIntoLight(
                             textStyle: Theme.of(context).textTheme.headline4)),
                   ),

@@ -97,7 +97,7 @@ class _HomeState extends State<Home> {
                                     Container(
                                       width: width - 150,
                                       alignment: Alignment.center,
-                                      height: 465,
+                                      height: 470,
                                       child: ColorPicker(
                                         pickerColor: currentColor,
                                         onColorChanged: changeColor,
@@ -140,7 +140,7 @@ class _HomeState extends State<Home> {
                                                     textInputAction:
                                                         TextInputAction.newline,
                                                     minLines: 1,
-                                                    maxLines: 5,
+                                                    maxLines: 25,
                                                   ),
                                                   contentHorizontalPadding: 20,
                                                   contentBorderWidth: 1,
