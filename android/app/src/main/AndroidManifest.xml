@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zanie.lightup">
+    package="com.zanie.lightsup">
    <application
-        android:label="lightup"
+        android:label="lightsup"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "559722729866",
+    "project_id": "haunt-4",
+    "storage_bucket": "haunt-4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559722729866:android:525d6f2fc8de9eedaf3873",
+        "android_client_info": {
+          "package_name": "com.zanie.lightsup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559722729866-peqd0p00iu3r3stbgfib9qduoa637op7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0vXTgAXVORqZs6v5g0vkTlP2YpwNKJ04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559722729866-peqd0p00iu3r3stbgfib9qduoa637op7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

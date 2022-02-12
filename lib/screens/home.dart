@@ -17,6 +17,7 @@ class _HomeState extends State<Home> {
         height: height,
         width: width,
         decoration: const BoxDecoration(color: Colors.pink),
+        child: const Center(child: Text("hemlo")),
       ),
     );
   }

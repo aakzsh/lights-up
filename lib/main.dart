@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lightup/screens/home.dart';
+import 'package:lightsup/screens/home.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
