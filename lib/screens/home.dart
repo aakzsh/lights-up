@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:accordion/accordion.dart';
+import 'package:lightsup/screens/notes.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -42,6 +43,14 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Notes()),
+                    );
+                  },
+                  child: Text("data")),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 16.0, 0, 16.0),
                 child: Row(
