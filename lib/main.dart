@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:lightsup/auth/authHome.dart';
 import 'package:lightsup/screens/home.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
+import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const App());
 }
 
@@ -19,8 +24,10 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     String appName = "Lights Up";
     return MaterialApp(
+      theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
       title: appName,
-      home: const Home(),
+      home: const AuthHome(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

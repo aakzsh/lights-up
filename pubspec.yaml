@@ -36,6 +36,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   web_socket_channel: ^2.1.0
   change_app_package_name: ^1.0.0
+  google_fonts:
+  cloud_firestore:
+  firebase_core:
+  firebase_auth:
+  firebase_storage: 
+  firebase_analytics: 
+  image_picker:
   flutter_colorpicker: ^1.0.3
   accordion: ^2.1.2
 
