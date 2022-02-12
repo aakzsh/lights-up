@@ -26,8 +26,6 @@ class _HomeState extends State<Home> {
         color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.w700);
     final _contentStyle = TextStyle(
         color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.normal);
-    final _loremIpsum =
-        '''Lorem ipsum is typically a corrupted version of 'De finibus bonorum et malorum', a 1st century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin.''';
 
     void changeColor(Color color) => setState(() {
           currentColor = color;
@@ -58,7 +56,7 @@ class _HomeState extends State<Home> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Image.asset('assets/frame.png', width: 100),
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 35.0,
                       backgroundImage: AssetImage('assets/avatar.png'),
                       backgroundColor: Colors.black12,
@@ -73,7 +71,7 @@ class _HomeState extends State<Home> {
                   TextButton(
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.black,
-                      shape: CircleBorder(),
+                      shape: const CircleBorder(),
                     ),
                     child: const Padding(
                       padding: EdgeInsets.all(8.0),
