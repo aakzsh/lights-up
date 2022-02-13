@@ -12,33 +12,38 @@ class Notes extends StatefulWidget {
   _NotesState createState() => _NotesState();
 }
 
+List<dynamic>? notebaamzi;
+
 class _NotesState extends State<Notes> {
   getData() async {
+    print("=================== $em");
     await FirebaseFirestore.instance
         .collection('lightsUpUsers')
         .doc(em)
         .get()
-        .then((value) => {
-              FirebaseFirestore.instance
-                  .collection('lightsUpNotes')
-                  .doc(value.data()!['room'])
-                  .get()
-                  .then((value) => {
-                        setState(() {
-                          notebaamzi = value.data()!['notes'];
-                          print(notebaamzi);
-                        })
-                      })
-            });
+        .then((value) {
+      print(value.data());
+      FirebaseFirestore.instance
+          .collection('lightsUpNotes')
+          .doc(value.data()!['room'])
+          .get()
+          .then((value) => {
+                setState(() {
+                  print(value.data());
+                  notebaamzi = value.data()!['notes'];
+                  print("====================");
+                  print(notebaamzi![0].toString());
+                })
+              });
+    });
     // await
   }
 
-  List<dynamic>? notebaamzi;
   String sender = "Juliet";
   String receiver = "Romeo";
 
   @override
-  void initstate() {
+  void initState() {
     super.initState();
     getData();
   }
@@ -51,15 +56,17 @@ class _NotesState extends State<Notes> {
     return Scaffold(
       body: PageView(
         controller: controller,
-        children: createNote(height, width, sender, receiver, "hemlo", context),
+        children:
+            createNote(height, width, sender, receiver, notebaamzi, context),
       ),
     );
   }
 }
 
-List<Widget> createNote(height, width, sender, receiver, content, context) {
-  return new List<Widget>.generate(10, (int index) {
-    return noteShow(height, width, sender, receiver, content, context);
+List<Widget> createNote(height, width, sender, receiver, notebaamzi, context) {
+  return new List<Widget>.generate(notebaamzi.length, (int index) {
+    return noteShow(height, width, notebaamzi[index]['from'],
+        notebaamzi[index]['to'], notebaamzi[index]['content'], context);
   });
 }
 

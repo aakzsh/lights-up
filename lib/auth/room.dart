@@ -130,11 +130,15 @@ class _RoomState extends State<Room> {
                             'members': [em],
                             'notes': []
                           }).then((value) => {
-                                    print("success"),
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Home()))
+                                    FirebaseFirestore.instance
+                                        .collection('lightsUpUsers')
+                                        .doc(em)
+                                        .update({'room': code}).then((value) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Home()));
+                                    })
                                   });
                         },
                         height: 50,
