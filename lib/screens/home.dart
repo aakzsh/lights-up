@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:accordion/accordion.dart';
+import 'package:vibration/vibration.dart';
 import 'package:lightsup/screens/notes.dart';
 
 class Home extends StatefulWidget {
@@ -13,7 +14,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-Color currentColor = Color(0xff45C5BD);
+Color currentColor = Color(0xff00ff00);
 Color pickerColor = Color(0xff45C5BD);
 
 String email = "";
@@ -74,11 +75,35 @@ class _HomeState extends State<Home> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     print("===================== $email");
+
+    FirebaseFirestore.instance
+        .collection('lightsUpNotes')
+        .doc(roomId)
+        .snapshots()
+        .listen((event) {
+      print("j");
+      // check and perform the task accordingly.
+      print(event.data());
+      setState(() {
+        currentColor = Color(int.parse(event.data()!['clr'], radix: 16));
+      });
+      if (event.data()!['sv']) {
+        Vibration.vibrate(pattern: [200, 200, 50, 500]).then((value) {
+          FirebaseFirestore.instance
+              .collection('lightsUpNotes')
+              .doc(roomId)
+              .update({'sv': false});
+        });
+      }
+
+      // if(event.data().)
+    });
+
     final _headerStyle = TextStyle(
         color: Color(0xffffffff), fontSize: 15, fontWeight: FontWeight.bold);
-    final _contentStyleHeader = TextStyle(
+    final _contentStyleHeader = const TextStyle(
         color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.w700);
-    final _contentStyle = TextStyle(
+    final _contentStyle = const TextStyle(
         color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.normal);
 
     void changeColor(Color color) => setState(() {
@@ -219,14 +244,6 @@ class _HomeState extends State<Home> {
                                                       color: Colors.white)),
                                               onPressed: () async {
                                                 await getUser();
-                                                setState(() {
-                                                  currentColor = pickerColor;
-                                                  // // Navigator.pop(context);
-                                                  print(
-                                                      "to: $to from: $from room: $roomId");
-
-                                                  // FirebaseFirestore.instance.collection('lightsUpNotes').doc()
-                                                });
 
                                                 if (emailList[0]['email'] ==
                                                     email) {
@@ -249,7 +266,16 @@ class _HomeState extends State<Home> {
                                                     .update({
                                                   'notes':
                                                       FieldValue.arrayUnion(
-                                                          [data])
+                                                          [data]),
+                                                  'sv': true,
+                                                  'clr': currentColor
+                                                      .toString()
+                                                      .substring(
+                                                          8,
+                                                          currentColor
+                                                                  .toString()
+                                                                  .length -
+                                                              1)
                                                 }).then((value) {
                                                   Navigator.pop(context);
                                                 });

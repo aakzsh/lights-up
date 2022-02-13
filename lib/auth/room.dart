@@ -132,7 +132,9 @@ class _RoomState extends State<Room> {
                             'members': [
                               {"email": em, "name": nm}
                             ],
-                            'notes': []
+                            'notes': [],
+                            "sv": false,
+                            "clr": "ff45C5BD"
                           }).then((value) => {
                                     FirebaseFirestore.instance
                                         .collection('lightsUpUsers')

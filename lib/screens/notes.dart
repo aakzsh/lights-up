@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lightsup/auth/register.dart';
 import 'package:lightsup/screens/home.dart';
+import 'package:vibration/vibration.dart';
 
 class Notes extends StatefulWidget {
   const Notes({Key? key}) : super(key: key);
@@ -54,6 +55,7 @@ class _NotesState extends State<Notes> {
   @override
   Widget build(BuildContext context) {
     // getData();
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     final PageController controller = PageController();

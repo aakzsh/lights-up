@@ -45,6 +45,7 @@ dependencies:
   image_picker:
   flutter_colorpicker: ^1.0.3
   accordion: ^2.1.2
+  vibration: ^1.7.4-nullsafety.0
 
 dev_dependencies:
   flutter_test:
