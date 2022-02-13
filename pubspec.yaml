@@ -44,6 +44,7 @@ dependencies:
   firebase_analytics: 
   image_picker:
   flutter_colorpicker: ^1.0.3
+  accordion: ^2.1.2
 
 dev_dependencies:
   flutter_test:
