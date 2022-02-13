@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:accordion/accordion.dart';
@@ -17,6 +18,14 @@ class _HomeState extends State<Home> {
   bool _portraitOnly = false;
   @override
   Widget build(BuildContext context) {
+    CollectionReference reference =
+        FirebaseFirestore.instance.collection('lightsUpNotes');
+    reference.snapshots().listen((querySnapshot) {
+      querySnapshot.docChanges.forEach((change) {
+        print(change);
+      });
+    });
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -41,14 +50,6 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Notes()),
-                    );
-                  },
-                  child: Text("data")),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 16.0, 0, 16.0),
                 child: Row(
@@ -56,10 +57,20 @@ class _HomeState extends State<Home> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Image.asset('assets/frame.png', width: 100),
-                    const CircleAvatar(
-                      radius: 35.0,
-                      backgroundImage: AssetImage('assets/avatar.png'),
-                      backgroundColor: Colors.black12,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Notes()),
+                        );
+                      },
+                      child: const CircleAvatar(
+                        radius: 35.0,
+                        backgroundColor: Colors.black,
+                        child: Icon(
+                          Icons.notes,
+                        ),
+                      ),
                     )
                   ],
                 ),

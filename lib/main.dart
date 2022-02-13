@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lightsup/auth/authHome.dart';
 import 'package:lightsup/screens/home.dart';
@@ -26,8 +27,16 @@ class _AppState extends State<App> {
     return MaterialApp(
       theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
       title: appName,
-      home: const AuthHome(),
+      home: decide(),
       debugShowCheckedModeBanner: false,
     );
+  }
+}
+
+decide() {
+  if (FirebaseAuth.instance.currentUser != null) {
+    return Home();
+  } else {
+    return AuthHome();
   }
 }

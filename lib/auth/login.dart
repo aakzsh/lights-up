@@ -25,49 +25,103 @@ class _LoginState extends State<Login> {
         child: Padding(
           padding: EdgeInsets.all(30),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Welcome Back"),
-              TextField(
-                  decoration: const InputDecoration(hintText: "email"),
-                  onChanged: (e) {
-                    email = e;
-                  }),
-              TextField(
-                  decoration: const InputDecoration(hintText: "password"),
-                  onChanged: (e) {
-                    password = e;
-                  }),
-              MaterialButton(
-                  child: Text("login"),
-                  onPressed: () async {
-                    await FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                            email: email, password: password)
-                        .then((result) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => Home()),
-                      );
-                    }).catchError((err) {
-                      print(err.message);
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text("Error"),
-                              content: Text(err.message),
-                              actions: [
-                                TextButton(
-                                  child: Text("okay"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                )
-                              ],
-                            );
-                          });
-                    });
-                  })
+              Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    "Welcome Back",
+                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(237, 255, 253, 253),
+                          borderRadius: BorderRadius.circular(10)),
+                      height: 60,
+                      width: width,
+                      child: Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Center(
+                            child: TextField(
+                                decoration: const InputDecoration.collapsed(
+                                    hintText: "email"),
+                                onChanged: (e) {
+                                  email = e;
+                                }),
+                          ))),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(237, 255, 253, 253),
+                          borderRadius: BorderRadius.circular(10)),
+                      height: 60,
+                      width: width,
+                      child: Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Center(
+                            child: TextField(
+                                obscureText: true,
+                                decoration: const InputDecoration.collapsed(
+                                    hintText: "password"),
+                                onChanged: (e) {
+                                  password = e;
+                                }),
+                          ))),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  MaterialButton(
+                      height: 50,
+                      minWidth: 200,
+                      color: Color.fromARGB(255, 235, 121, 93),
+                      child: Text("login"),
+                      onPressed: () async {
+                        await FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                                email: email, password: password)
+                            .then((result) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => Home()),
+                          );
+                        }).catchError((err) {
+                          print(err.message);
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Error"),
+                                  content: Text(err.message),
+                                  actions: [
+                                    TextButton(
+                                      child: Text("okay"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                        });
+                      }),
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              )
             ],
           ),
         ),

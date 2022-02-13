@@ -53,14 +53,15 @@ class _AuthHomeState extends State<AuthHome> {
                 children: const <Widget>[
                   Text(
                     "Lights Up",
-                    style: TextStyle(fontSize: 40),
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                   ),
                   Center(
                       child: Text(
                     "feel the affection from your long distance loved ones",
+
                     // "subtitle baamzi karni hai idhar almost itne hee length ki",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20, color: Colors.black54),
                   ))
                 ],
               ),
