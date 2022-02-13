@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lightsup/auth/room.dart';
 import 'package:lightsup/screens/home.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -12,6 +13,8 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  ImagePicker picker = ImagePicker();
+
   String email = "";
   String password = "";
   String name = "";
@@ -56,7 +59,8 @@ class _RegisterState extends State<Register> {
                   }).then((value) => {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(builder: (context) => Home()),
+                              MaterialPageRoute(
+                                  builder: (context) => Room(email)),
                             )
                           });
                 }).catchError((err) {
@@ -78,7 +82,7 @@ class _RegisterState extends State<Register> {
                         );
                       });
                 });
-              })
+              }),
         ],
       ),
     );
