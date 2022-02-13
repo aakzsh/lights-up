@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lightsup/auth/register.dart';
+import 'package:lightsup/screens/home.dart';
 
 class Notes extends StatefulWidget {
   const Notes({Key? key}) : super(key: key);
@@ -16,10 +17,12 @@ List<dynamic>? notebaamzi;
 
 class _NotesState extends State<Notes> {
   getData() async {
-    print("=================== $em");
+    print("here");
+    print("jjjj");
+    print("=================== $email");
     await FirebaseFirestore.instance
         .collection('lightsUpUsers')
-        .doc(em)
+        .doc(email)
         .get()
         .then((value) {
       print(value.data());
@@ -50,6 +53,7 @@ class _NotesState extends State<Notes> {
 
   @override
   Widget build(BuildContext context) {
+    // getData();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     final PageController controller = PageController();
@@ -64,9 +68,14 @@ class _NotesState extends State<Notes> {
 }
 
 List<Widget> createNote(height, width, sender, receiver, notebaamzi, context) {
-  return new List<Widget>.generate(notebaamzi.length, (int index) {
-    return noteShow(height, width, notebaamzi[index]['from'],
-        notebaamzi[index]['to'], notebaamzi[index]['content'], context);
+  return List<Widget>.generate(notebaamzi.length, (int index) {
+    return noteShow(
+        height,
+        width,
+        notebaamzi[notebaamzi.length - index - 1]['from'],
+        notebaamzi[notebaamzi.length - index - 1]['to'],
+        notebaamzi[notebaamzi.length - index - 1]['content'],
+        context);
   });
 }
 

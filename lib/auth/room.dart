@@ -55,7 +55,7 @@ class _RoomState extends State<Room> {
                                       code = e;
                                     }),
                               ))),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       MaterialButton(
@@ -64,7 +64,9 @@ class _RoomState extends State<Room> {
                               .collection("lightsUpNotes")
                               .doc(code)
                               .update({
-                            'members': FieldValue.arrayUnion([em])
+                            'members': FieldValue.arrayUnion([
+                              {"email": em, "name": nm}
+                            ])
                           }).then((value) => {
                                     FirebaseFirestore.instance
                                         .collection('lightsUpUsers')
@@ -127,13 +129,16 @@ class _RoomState extends State<Room> {
                               .collection("lightsUpNotes")
                               .doc(newcode)
                               .set({
-                            'members': [em],
+                            'members': [
+                              {"email": em, "name": nm}
+                            ],
                             'notes': []
                           }).then((value) => {
                                     FirebaseFirestore.instance
                                         .collection('lightsUpUsers')
                                         .doc(em)
-                                        .update({'room': code}).then((value) {
+                                        .update({'room': newcode}).then(
+                                            (value) {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

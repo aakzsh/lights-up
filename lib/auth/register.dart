@@ -13,6 +13,7 @@ class Register extends StatefulWidget {
 }
 
 String em = "";
+String nm = "";
 
 class _RegisterState extends State<Register> {
   ImagePicker picker = ImagePicker();
@@ -116,6 +117,7 @@ class _RegisterState extends State<Register> {
                           onPressed: () async {
                             setState(() {
                               em = email;
+                              nm = name;
                             });
                             await FirebaseAuth.instance
                                 .createUserWithEmailAndPassword(
